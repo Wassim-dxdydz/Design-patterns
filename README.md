@@ -1,4 +1,4 @@
-# 🧠 Design Patterns Repository (Kotlin + PlantUML)
+# 🧠 Design Patterns
 
 This repository is a comprehensive collection of **software design patterns**, implemented in **Kotlin**, with formal modeling using **PlantUML** diagrams.
 
@@ -74,7 +74,7 @@ PlantUML diagram describing the architecture of the scenario.
 
 ## ☕ Kotlin Guidelines
 
-All implementations follow modern Kotlin best practices:
+All implementations follow modern [**Kotlin**](https://kotlinlang.org/docs/home.html) best practices:
 
 - Idiomatic Kotlin syntax
 - Immutable structures when possible
@@ -98,7 +98,7 @@ class CreditCardPayment : PaymentStrategy {
 
 # 📐 PlantUML Guidelines
 
-All diagrams are written in **PlantUML** and follow standard UML conventions.
+All diagrams are written in [**PlantUML**](https://plantuml.com/) and follow standard UML conventions.
 
 
 ## 🧩 Example
