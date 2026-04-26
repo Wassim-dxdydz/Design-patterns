@@ -1,17 +1,31 @@
+# 🧠 Design Patterns Repository (Kotlin + PlantUML)
+
+This repository is a comprehensive collection of **software design patterns**, implemented in **Kotlin**, with formal modeling using **PlantUML** diagrams.
+
+The goal is to provide a practical, structured, and extensible reference for learning, teaching, and applying design patterns in real-world development.
+
+
+## 📦 Repository Structure
+
+Each design pattern has what follows:
+- PatternX.kt
+- PatternXTest.kt
+- PatternX.puml
+- PatternX.md
 
 Each **pattern** contains multiple **scenarios (at least 3)** to demonstrate different real-world applications or variations.
 
 
 ## 🧩 Covered Design Patterns
 
-### ✅ Creational Patterns
+### 🏗️ Creational Patterns
 - Singleton
 - Factory Method
 - Abstract Factory
 - Builder
 - Prototype
 
-### 🔷 Structural Patterns
+### 🧱 Structural Patterns
 - Adapter
 - Composite
 - Decorator
@@ -21,7 +35,7 @@ Each **pattern** contains multiple **scenarios (at least 3)** to demonstrate dif
     - Facade
     - Flyweight
 
-### 🔶 Behavioral Patterns
+### 🔁 Behavioral Patterns
 - Strategy
 - Observer
 - Command
