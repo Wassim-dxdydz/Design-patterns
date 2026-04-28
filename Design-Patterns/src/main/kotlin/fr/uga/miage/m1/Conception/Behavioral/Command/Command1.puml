@@ -1,0 +1,40 @@
+vertical top to bottom direction
+skinparam componentStyle uml2
+
+@startuml
+interface Command {
+    +execute()
+    +undo()
+}
+
+class DimCommand {
+    -light: Light
+    -brightness : Int
+    +execute()
+    +undo()
+}
+
+class Light {
+    -brightness : Int
+    +setBrightness(brightness: Int)
+    +getBrightness() : Int
+}
+
+class CommandHistory {
+    -history: Stack<Command>
+    +push(command: Command)
+    +pop() : Command
+}
+
+class RemoteControl {
+    -History : CommandHistory
+    +executeCommand(command: Command)
+    +undo()
+}
+Command <|.. DimCommand
+DimCommand --> Light
+RemoteControl --> Command
+RemoteControl o-- CommandHistory
+CommandHistory o-- Command
+
+@enduml

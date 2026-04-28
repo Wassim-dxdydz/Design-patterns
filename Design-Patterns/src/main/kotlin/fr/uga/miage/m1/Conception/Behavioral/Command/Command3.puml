@@ -1,0 +1,67 @@
+vertical top to bottom direction
+skinparam componentStyle uml2
+
+@startuml
+interface Command {
+    +execute()
+    +undo()
+}
+
+class Soldier {
+    -posX : Int
+    -posY : Int
+    +move(x: Int, y: Int)
+    +guard()
+    +getX() : Int
+    +getY() : Int
+    +getStatus() : String
+    +setStatus(status: String)
+    +setPosition(x: Int, y: Int)
+}
+
+class MoveCommand {
+    -soldier : Soldier
+    -previousX : Int
+    -previousY : Int
+    +execute()
+    +undo()
+}
+
+class GuardCommand {
+    -soldier : Soldier
+    -previousStatus : String
+    +execute()
+    +undo()
+}
+
+class PatrolCommand {
+    -soldier : Soldier
+    -commands : List<Command>
+    +execute()
+    +undo()
+}
+
+Command <|.. MoveCommand
+Command <|.. GuardCommand
+Command <|.. PatrolCommand
+Command ..o PatrolCommand
+Soldier <.. MoveCommand
+Soldier <.. GuardCommand
+
+class Game {
+    -history : CommandHistory
+    +executeCommand(command: Command)
+    +undoLastCommand()
+}
+
+class CommandHistory {
+    -commands : ArrayDeque<Command>
+    +push(command: Command)
+    +pop() : Command?
+}
+
+Game o-- CommandHistory
+Command --o CommandHistory
+Command <-- Game
+
+@enduml

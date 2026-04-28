@@ -1,0 +1,52 @@
+vertical top to bottom direction
+skinparam componentStyle uml2
+
+@startuml
+interface Command {
+    +execute()
+    +undo()
+}
+
+class DepositCommand {
+    -account: BankAccount
+    -amount : Int
+    +execute()
+    +undo()
+}
+
+class WithdrawCommand {
+    -account: BankAccount
+    -amount : Int
+    +execute()
+    +undo()
+}
+
+Command <|.. DepositCommand
+Command <|.. WithdrawCommand
+
+class BankAccount {
+    -balance : Int
+    +deposit(amount: Int)
+    +withdraw(amount: Int)
+}
+
+BankAccount <-- DepositCommand
+BankAccount <-- WithdrawCommand
+
+class CommandHistory {
+    -history: Stack<Command>
+    +push(command: Command)
+    +pop() : Command
+}
+
+class BankingApp {
+    -History : CommandHistory
+    +executeCommand(command: Command)
+    +undo()
+}
+
+BankingApp --> Command
+BankingApp o-- CommandHistory
+CommandHistory o-- Command
+
+@enduml
