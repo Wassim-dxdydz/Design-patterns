@@ -1,0 +1,61 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+
+enum Status {
+    STABLE
+    RECOVERING
+    CRITICAL
+}
+
+interface Iterator3 <T>{
+    +next(): T
+    +hasMore(): Boolean
+}
+
+interface IterableCollection3 <T> {
+    +createFirstIterator3(): Iterator3<T>
+    +createSecondIterator3(): Iterator3<T>
+}
+
+class Patient{
+    +name: String
+    +status: Status
+}
+
+class Ward{
+    -patients : List<Patient>
+    +add(p : Patient)
+    ~internal fun size() : Int
+    ~get(id :Int) : Patient
+    +createFirstIterator3(): Iterator3 <Patient>
+    +createSecondIterator3(): Iterator3 <Patient>
+}
+
+class FirstIterator3{
+    -ward : Ward
+    -index : Int
+    +next(): Patient
+    +hasMore(): Boolean
+}
+
+class SecondIterator3{
+    -ward : Ward
+    -index : Int
+    +next(): Patient
+    +hasMore(): Boolean
+}
+
+Patient --> Status
+Ward "1" *--"many" Patient
+Ward <.. FirstIterator3
+Ward <.. SecondIterator3
+Ward ..|> IterableCollection3
+
+IterableCollection3 ..> Iterator3
+FirstIterator3 ..|> Iterator3
+SecondIterator3 ..|> Iterator3
+
+
+@enduml

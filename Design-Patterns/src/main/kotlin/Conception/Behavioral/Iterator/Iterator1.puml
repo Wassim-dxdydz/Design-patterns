@@ -1,0 +1,42 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+interface Iterator <T>{
+    +next() : T
+    +hasMore(): Boolean
+}
+
+interface IterableCollection <T> {
+    +createIterator() : Iterator<T>
+}
+
+class Book{
+    +title: String
+    +author: String
+    +year: Int
+}
+
+class Shelf {
+    -books : List<Book>
+    +addBook(book: Book)
+    +createIterator(): Iterator<Book>
+    ~size(): Int
+    ~get(index: Int): Book
+}
+
+class BookIterator {
+    -shelf : Shelf
+    -index = 0
+    +next(): Book
+    +hasMore(): Boolean
+}
+
+Iterator <|.. BookIterator
+IterableCollection <|.. Shelf
+Shelf <-- BookIterator
+IterableCollection ..> Iterator
+Shelf "1" *--"many" Book
+
+
+@enduml

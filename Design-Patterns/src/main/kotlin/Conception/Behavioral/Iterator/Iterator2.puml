@@ -1,0 +1,59 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+enum Priority {
+    LOW
+    MEDIUM
+    HIGH
+}
+
+interface Iterator <T>{
+    +next(): T
+    +hasMore() : Boolean
+}
+
+interface IterableCollection <T>{
+    +createFirstIterator(): Iterator<T>
+    +createSecondIterator(): Iterator<T>
+}
+
+class Task{
+    +name: String,
+    +priority: Priority
+}
+
+class TaskBoard{
+    -tasks : List<Task>
+    +addTask(task)
+    ~size() : Int
+    ~get(index) : Task
+    +createFirstIterator(): Iterator<Task>
+    +createSecondIterator(): Iterator<Task>
+}
+
+class FirstIterator{
+    -task : TaskBoard
+    -index: Int
+    +next(): Task
+    +hasMore(): Boolean
+}
+
+class SecondIterator{
+    -task : TaskBoard
+    -index : Int
+    +next(): Task
+    +hasMore(): Boolean
+}
+
+IterableCollection <|.. TaskBoard
+IterableCollection ..> Iterator
+TaskBoard "1" *-- "*" Task
+TaskBoard <.. FirstIterator
+TaskBoard <.. SecondIterator
+Iterator <|.. FirstIterator
+Iterator <|.. SecondIterator
+Task --> Priority
+
+
+@enduml
