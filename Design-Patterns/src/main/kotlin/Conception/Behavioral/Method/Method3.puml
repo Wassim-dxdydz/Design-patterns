@@ -1,0 +1,45 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+abstract class MedReport <<Template>>{
+    +generate() : String
+    -collect (): String
+    #{abstract} analysis(): String
+    #{abstract} formatting(): String
+    #{abstract} sending(): String
+    #onReportComplete() : String
+}
+
+class GeneralReport {
+    #analysis(): String
+    #formatting(): String
+    #sending(): String
+}
+
+class CardiologyReport{
+    #onReportComplete() : String
+    #analysis(): String
+    #formatting(): String
+    #sending(): String
+}
+
+class PediatricsReport{
+    #analysis(): String
+    #formatting(): String
+    #sending(): String
+}
+
+class OncologyReport{
+    #onReportComplete() : String
+    #analysis(): String
+    #formatting(): String
+    #sending(): String
+}
+
+MedReport <|-- GeneralReport
+MedReport <|-- CardiologyReport
+MedReport <|-- PediatricsReport
+MedReport <|-- OncologyReport
+
+@enduml

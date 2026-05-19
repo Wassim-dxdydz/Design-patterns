@@ -1,0 +1,38 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+
+abstract class LabAnalysis {
+    + runAnalysis(patientName: String) <<final>>
+    - collectSample(patientName: String)
+    - generateReport(patientName: String)
+    # {abstract} analyze(patientName: String)
+    # {abstract} interpret(patientName: String)
+    # needsCalibration(): Boolean
+    # calibrate()
+}
+
+class BloodTest {
+    # analyze(patientName: String)
+    # interpret(patientName: String)
+    # needsCalibration(): Boolean
+}
+
+class UrineTest {
+    # analyze(patientName: String)
+    # interpret(patientName: String)
+}
+
+class ImagingReport {
+    # analyze(patientName: String)
+    # interpret(patientName: String)
+    # needsCalibration(): Boolean
+    # calibrate()
+}
+
+LabAnalysis <|-- BloodTest
+LabAnalysis <|-- UrineTest
+LabAnalysis <|-- ImagingReport
+
+@enduml

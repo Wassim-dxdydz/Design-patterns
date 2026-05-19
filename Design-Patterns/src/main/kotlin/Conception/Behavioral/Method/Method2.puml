@@ -1,0 +1,32 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+abstract class HotBeverage <<Template>> {
+    +prepare() : String
+    -boilWater() : String
+    -pourInCup() : String
+    #addCondiments() : String
+    #{abstract} brew() : String
+}
+
+class Tea {
+    #addCondiments(): String
+    #brew(): String
+}
+
+class Coffee {
+    #addCondiments(): String
+    #brew(): String
+}
+
+class HotChocolate {
+    #addCondiments(): String
+    #brew(): String
+}
+
+HotBeverage <|-- Tea
+HotBeverage <|-- Coffee
+HotBeverage <|-- HotChocolate
+
+@enduml
