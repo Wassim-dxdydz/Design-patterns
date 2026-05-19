@@ -1,0 +1,38 @@
+@startuml
+top to bottom direction
+skinparam componentStyle uml2
+
+interface Services {
+    +update(context :  Ecommerce)
+}
+
+class Ecommerce {
+    -subscribers = List<Services>
+    -notifySubscribers()
+    +status : String
+    +attach(subscriber: Services)
+    +detach (subscriber: Services)
+    +trigger(status : String)
+}
+
+class Notification{
+    +lastStatus: String
+    +update(context: Ecommerce)
+}
+
+class Inventory{
+    +lastStatus: String
+    +update(context: Ecommerce)
+}
+
+class Invoice{
+    +lastStatus: String
+    +update(context: Ecommerce)
+}
+
+Services <|.. Notification
+Services <|.. Inventory
+Services <|.. Invoice
+Ecommerce o--> Services
+
+@enduml

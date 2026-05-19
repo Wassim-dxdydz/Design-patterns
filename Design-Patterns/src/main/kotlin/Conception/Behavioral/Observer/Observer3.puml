@@ -1,0 +1,40 @@
+@startuml
+top to bottom direction
+skinparam packageStyle uml2
+
+interface Watchers {
+    +update(StockTracker)
+}
+
+class StockTracker {
+    -subscribers = List<Watchers>
+    +price : Double
+
+    -notifySubscribers()
+    +attach(Watchers)
+    +detach(Watchers)
+    +trigger(Double)
+}
+
+
+class MobileAlert{
+    +lastPrice : Double
+    +update(StockTracker)
+}
+
+class TradingBot{
+    +lastPrice : Double
+    +update(StockTracker)
+}
+
+class PortfolioDashboard {
+    +lastPrice : Double
+    +update(StockTracker)
+}
+
+Watchers <|.. MobileAlert
+Watchers <|.. TradingBot
+Watchers <|.. PortfolioDashboard
+StockTracker o--> Watchers
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+top to bottom direction
+skinparam componentStyle uml2
+
+interface HubSubscriber {
+    fun update(context : Hub)
+}
+
+class Hub {
+    -subscribers : List<HubSubscriber>
+    +event : String
+
+    -notifySubscribers()
+    +attach(subscriber : HubSubscriber)
+    +detach(subscriber : HubSubscriber)
+    +trigger(event : String)
+}
+
+class Alarm {
+    +update(context: Hub)
+}
+
+class Lights{
+    +update(context: Hub)}
+}
+
+class Thermostat{
+    +update(context: Hub)
+}
+
+HubSubscriber <|.. Alarm
+HubSubscriber <|.. Lights
+HubSubscriber <|.. Thermostat
+Hub o--> HubSubscriber
+
+@enduml
